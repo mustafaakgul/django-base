@@ -67,6 +67,7 @@
 ## Some Points
 * Denormalisations
 * Business Logic
+* 12 Factors: Codebase, Dependencies, Config, Backing services, Build, release, run, Processes, Port binding, Concurrency, Disposability, Dev/prod parity, Logs, Admin processes
 
 ## Coding Style
 * PEP 8
@@ -344,6 +345,7 @@ class Company(models.Model):
 ## How to run
 ```
 $ python manage.py runserver
+$ python manage.py runserver --settings=settings.local
 $ python manage.py makemigrations
 $ python manage.py migrate
 $ python manage.py createsuperuser
