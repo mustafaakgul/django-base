@@ -91,7 +91,7 @@
 * Method names and instance variables: Use the function naming rules—lowercase with words separated by underscores as necessary to improve readability. Use one leading underscore only for non-public methods and instance variables.
 * Function and variable names in snake_case
 * Constants snake_case capitalized
-* Naming templates -> [application]/[model]_[function].html, address_book/contact_list.html
+* Naming templates -> [application]/[model]_[function].html, address_book/contact_list.html, templates/blog/post-detail.html
 
 ## Importing a Package
 * Import packages in the following order:
