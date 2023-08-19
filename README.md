@@ -219,6 +219,34 @@ project/
     utils/
         service/
         helper/
+        
+App Style Structure
+project/apps/portal/
+├── __init__.py
+├── admin.py
+├── apps.py
+├── management
+│   ├── __init__.py
+│   └── commands
+│       ├── __init__.py
+│       └── update_portal_feeds.py
+├── migrations
+│   └── __init__.py
+├── models.py
+├── static
+│   └── portal
+│       ├── css
+│       ├── img
+│       └── js
+├── templates
+│   └── portal
+│       └── index.html
+├── templatetags
+│   ├── __init__.py
+│   └── portal.py
+├── tests.py
+├── urls.py
+└── views.py
 ```
 
 ## Model Style Ordering
