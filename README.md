@@ -47,6 +47,14 @@
 * Add .editorconfig file
 * Add pipfile and pipfile.lock
 
+# Tools - Extras
+* Code Quality — flake8
+* Environment Manager — venv
+* Documentation — Swagger
+* Testing — pytest
+* IDE — Pycharm, VSCode, Vim
+* Debug — pdb
+
 ## Some Points
 * Denormalisations
 * Business Logic
@@ -72,6 +80,11 @@
     * Standard library imports -> (import os)
     * Related third party imports -> (from rest_framwwork import *)
     * Local application/library specific imports -> (from .models import User) not use like (from models import *)
+* Import from Python standard library(1st)
+* Import from core Django(2nd)
+* Import from 3rd party vendor(3rd)
+* Import from Django Apps(4th)(Current Project)
+* Avoid import *
 
 ## The importance of blank lines
 * Two blank lines: A double blank lines can be used to separate top-level functions and the class definition, which enhances code readability.
@@ -89,7 +102,21 @@
 * https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/coding-style/
 * https://django-best-practices.readthedocs.io/en/latest/projects.html
 * https://steelkiwi.medium.com/best-practices-working-with-django-models-in-python-b17d98ab92b
-* 
+* https://google.github.io/styleguide/pyguide.html
+
+## Migrations
+* Do not modify the files created by makemigration command(do not add custom sql command)
+* Place custom sql command if needed in a separate file and do not mix it with the auto generated files from makemigration command
+* Forward and backward migration work only on auto generated files by makemigration command
+* Not all migration can be reversed
+* Add — database=<dbConfigName> always in your migration
+* Forward Migration
+  * python manage.py migrate appname 0002 — settings=project.settings.<Env> — database=<dbConfigName>
+  * python manage.py migrate appname 0003 — settings=project.settings.<Env> — database=<dbConfigName>
+  * Suppose it added all the migration 0001.py , 0002.py , 0003.py , 0004.py
+* Backward Migration
+  * (Remove New migrations -0002.py , 0003.py , 0004.py)
+  * python manage.py migrate appname 0001 — settings=project.settings.<Env> — database=<dbConfigName>
 
 ## Project Structure
 ```
@@ -156,6 +183,41 @@
 ├── requirements_dev.txt
 ├── requirements_docs.txt
 ├── requirements_test.txt
+
+project/
+    gitignore
+    README.md
+    docs/
+    requirements/
+        local.txt
+        qa.txt
+        prod.txt
+        base.txt
+    project/
+        settings/
+            base.py //copy of original settings.py
+            qa.py
+            local.py
+            prod.py
+        urls.py
+        wsgi.py
+        settings_default.py //renamed settings->settings_default
+    app1/
+    app2/
+        v1/
+            api.py // entry point , not much logic
+            service.py // all business logic
+            util.py // any helper
+        test/
+        migrations/
+        admin.py
+        models.py
+        apps.py
+        urls.py
+        views.py
+    utils/
+        service/
+        helper/
 ```
 
 ## How to run
@@ -266,3 +328,7 @@ $ docker-compose -f docker-compose.pre-commit.yml up
 ```
 $ docker-compose -f docker-compose.build.yml up
 ```
+
+## Some Frequently Notes
+* Null: It is database-related. Defines if a given database column will accept null values or not.
+* Blank: It is validation-related. It will be used during forms validation, when calling form.is_valid().
