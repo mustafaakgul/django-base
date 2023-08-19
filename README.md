@@ -47,18 +47,25 @@
 * Add .editorconfig file
 * Add pipfile and pipfile.lock
 
+## Some Points
+* Denormalisations
+* Business Logic
+
 ## Naming Conventions
 * Project -> django_base_structure, for github alter to django-base-structure
 * Apps -> namely it should be short, all-lowercase and not include numbers, dashes, periods, spaces, or special characters. It also, in general, should be the plural of an app's main model, so our posts app would have a main model called Post. Exp: rest_framework, polls.
 * Name the variables properly: Never use single characters, for example, ‘x’ or ‘X’ as variable names. It might be okay for your normal Python scripts, but when you are building a web application, you must name the variable properly as it determines the readability of the whole project.
 * Naming of packages and modules: Lowercase and short names are recommended for modules. Underscores can be used if their use would improve readability. Python packages should also have short, all-lowercase names, although the use of underscores is discouraged.
 * Since module names are mapped to file names (models.py, urls.py, and so on), it is important that module names be chosen to be fairly short as some file systems are case insensitive and truncate long names.
-* Naming a class: Class names should follow the CamelCase and singular naming convention, and classes for internal use can have a leading underscore in their name. -> Article, User, Post, Comment, Tag, Category, etc.
+* Naming a class: Class names should follow the PascalCase and singular naming convention, and classes for internal use can have a leading underscore in their name. -> Article, User, Post, Comment, Tag, Category, etc.
 * Naming a Related-Name: It is reasonable to indicate a related-name in plural as related-name addressing returns queryset. ->
     * class Item(models.Model): owner = models.ForeignKey(Owner, related_name='items')
+* Redundant model name in a field name -> (user_status to status)
 * Global variable names: First of all, you should avoid using global variables, but if you need to use them, prevention of global variables from getting exported can be done via __all__, or by defining them with a prefixed underscore (the old, conventional way).
-* Function names and method argument: Names of functions should be in lowercase and separated by an underscore and self as the first argument to instantiate methods. For classes or methods, use CLS or the objects for initialization.
+* Function names and method argument: Names of functions should be in lowercase and separated by an underscore (snake_case) and self as the first argument to instantiate methods. For classes or methods, use CLS or the objects for initialization.
 * Method names and instance variables: Use the function naming rules—lowercase with words separated by underscores as necessary to improve readability. Use one leading underscore only for non-public methods and instance variables.
+* Function and variable names in snake_case
+* Constants snake_case capitalized
 
 ## Importing a Package
 * Import packages in the following order:
@@ -70,10 +77,19 @@
 * Two blank lines: A double blank lines can be used to separate top-level functions and the class definition, which enhances code readability.
 * Single blank lines: A single blank line can be used in the use cases–for example, each function inside a class can be separated by a single line, and related functions can be grouped together with a single line. You can also separate the logical section of source code with a single line.
 
+## Indentation/Space
+* Use 4 spaces for indentation(Python 3 disallows mixing the use of tabs and spaces for indentation)
+* Separate top level function and classes with two blank lines
+* Separate method definition inside class by one line
+* Maximum length of line should be less than 80 characters
+* There should be no trailing white spaces
+
 ### Sources
 * https://peps.python.org/pep-0008/#package-and-module-names
 * https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/coding-style/
 * https://django-best-practices.readthedocs.io/en/latest/projects.html
+* https://steelkiwi.medium.com/best-practices-working-with-django-models-in-python-b17d98ab92b
+* 
 
 ## Project Structure
 ```
