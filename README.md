@@ -346,6 +346,8 @@ class Company(models.Model):
 
 ## How to run
 ```
+$ virtual venv
+$ source venv/bin/activate
 $ python manage.py runserver
 $ python manage.py runserver --settings=settings.local
 $ python manage.py makemigrations
