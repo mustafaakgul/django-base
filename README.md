@@ -53,10 +53,22 @@
 * Name the variables properly: Never use single characters, for example, ‘x’ or ‘X’ as variable names. It might be okay for your normal Python scripts, but when you are building a web application, you must name the variable properly as it determines the readability of the whole project.
 * Naming of packages and modules: Lowercase and short names are recommended for modules. Underscores can be used if their use would improve readability. Python packages should also have short, all-lowercase names, although the use of underscores is discouraged.
 * Since module names are mapped to file names (models.py, urls.py, and so on), it is important that module names be chosen to be fairly short as some file systems are case insensitive and truncate long names.
-* Naming a class: Class names should follow the CamelCase naming convention, and classes for internal use can have a leading underscore in their name.
+* Naming a class: Class names should follow the CamelCase and singular naming convention, and classes for internal use can have a leading underscore in their name. -> Article, User, Post, Comment, Tag, Category, etc.
+* Naming a Related-Name: It is reasonable to indicate a related-name in plural as related-name addressing returns queryset. ->
+    * class Item(models.Model): owner = models.ForeignKey(Owner, related_name='items')
 * Global variable names: First of all, you should avoid using global variables, but if you need to use them, prevention of global variables from getting exported can be done via __all__, or by defining them with a prefixed underscore (the old, conventional way).
 * Function names and method argument: Names of functions should be in lowercase and separated by an underscore and self as the first argument to instantiate methods. For classes or methods, use CLS or the objects for initialization.
 * Method names and instance variables: Use the function naming rules—lowercase with words separated by underscores as necessary to improve readability. Use one leading underscore only for non-public methods and instance variables.
+
+## Importing a Package
+* Import packages in the following order:
+    * Standard library imports -> (import os)
+    * Related third party imports -> (from rest_framwwork import *)
+    * Local application/library specific imports -> (from .models import User) not use like (from models import *)
+
+## The importance of blank lines
+* Two blank lines: A double blank lines can be used to separate top-level functions and the class definition, which enhances code readability.
+* Single blank lines: A single blank line can be used in the use cases–for example, each function inside a class can be separated by a single line, and related functions can be grouped together with a single line. You can also separate the logical section of source code with a single line.
 
 ### Sources
 * https://peps.python.org/pep-0008/#package-and-module-names
@@ -133,6 +145,9 @@
 ## How to run
 ```
 $ python manage.py runserver
+$ python manage.py makemigrations
+$ python manage.py migrate
+$ python manage.py createsuperuser
 ```
 
 ## How to run test
