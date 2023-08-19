@@ -9,6 +9,8 @@
 * Requirements.txt file
 * Version Control System -> Git
 * Versions Store -> GitHub
+* In App Folder “utils” directory for utility functions and helper modules
+* Using an “api” directory for housing REST API-related files if your project includes APIs
 
 ##  TODO
 * Database -> PostgreSQL
