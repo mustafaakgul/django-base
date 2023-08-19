@@ -1,8 +1,17 @@
 # Django Base Structure - Project Structure
-* Project -> Django Base Structure
-* Apps -> App
-* 3rd Party Apps -> ...
+* Project -> Django Base Structure and its Structure
+* Apps -> App and its Structure
+* 3rd Party Apps -> ..., Using Packages and Modules
 * IDE -> *PyCharm, VSCode
+* Virtual Envinronment -> venv
+* README.md file
+* .gitignore file
+* Requirements.txt file
+* Version Control System -> Git
+* Versions Store -> GitHub
+
+##  TODO
+* Database -> PostgreSQL
 * [Django](https://www.djangoproject.com/) - The web framework used
 * [Django Rest Framework](https://www.django-rest-framework.org/) - The web framework used
 * SonarLint - The IDE extension used
@@ -25,7 +34,6 @@
 * Add .travis.yml file
 * Add LICENSE file
 * Add Makefile file
-* Add README.md file
 * Add app folder
 * Add config folder
 * Add docs folder
@@ -46,6 +54,7 @@
 * Add .coverage file
 * Add .editorconfig file
 * Add pipfile and pipfile.lock
+* Use Isolated Docker Container
 
 # Tools - Extras
 * Code Quality — flake8
@@ -58,6 +67,11 @@
 ## Some Points
 * Denormalisations
 * Business Logic
+
+## Coding Style
+* PEP 8
+* Testable, Test Driven Development
+* Avoid Writing Fat Views
 
 ## Naming Conventions
 * Project -> django_base_structure, for github alter to django-base-structure
@@ -74,6 +88,7 @@
 * Method names and instance variables: Use the function naming rules—lowercase with words separated by underscores as necessary to improve readability. Use one leading underscore only for non-public methods and instance variables.
 * Function and variable names in snake_case
 * Constants snake_case capitalized
+* Naming templates -> [application]/[model]_[function].html, address_book/contact_list.html
 
 ## Importing a Package
 * Import packages in the following order:
@@ -247,6 +262,22 @@ project/apps/portal/
 ├── tests.py
 ├── urls.py
 └── views.py
+
+#Good practice
+root_folder/
+    my_app1/
+    my_app2/
+    my_app3/
+    templates/
+
+#If you want to make your app reusable
+root_folder/
+    my_app1/
+        templates/
+    my_app2/
+        templates/
+    my_app3/
+        templates/
 ```
 
 ## Model Style Ordering
