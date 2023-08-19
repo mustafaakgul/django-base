@@ -68,7 +68,7 @@
 * Naming a class: Class names should follow the PascalCase and singular naming convention, and classes for internal use can have a leading underscore in their name. -> Article, User, Post, Comment, Tag, Category, etc.
 * Naming a Related-Name: It is reasonable to indicate a related-name in plural as related-name addressing returns queryset. ->
     * class Item(models.Model): owner = models.ForeignKey(Owner, related_name='items')
-* Redundant model name in a field name -> (user_status to status)
+* Redundant model name in a field name -> (user_status to status), use singular snake_case
 * Global variable names: First of all, you should avoid using global variables, but if you need to use them, prevention of global variables from getting exported can be done via __all__, or by defining them with a prefixed underscore (the old, conventional way).
 * Function names and method argument: Names of functions should be in lowercase and separated by an underscore (snake_case) and self as the first argument to instantiate methods. For classes or methods, use CLS or the objects for initialization.
 * Method names and instance variables: Use the function naming rules—lowercase with words separated by underscores as necessary to improve readability. Use one leading underscore only for non-public methods and instance variables.
@@ -100,8 +100,9 @@
 ### Sources
 * https://peps.python.org/pep-0008/#package-and-module-names
 * https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/coding-style/
-* https://django-best-practices.readthedocs.io/en/latest/projects.html
+* https://django-best-practices.readthedocs.io/en/latest/projects.html, https://django-best-practices.readthedocs.io/en/latest/applications.html
 * https://steelkiwi.medium.com/best-practices-working-with-django-models-in-python-b17d98ab92b
+* https://pythonislove.com/django-urls-naming-conventions-and-best-practices
 * https://google.github.io/styleguide/pyguide.html
 
 ## Migrations
@@ -218,6 +219,67 @@ project/
     utils/
         service/
         helper/
+```
+
+## Model Style Ordering
+```
+The Django Coding Style suggests the following order of inner classes, methods and attributes:
+
+If choices is defined for a given model field, define each choice as a tuple of tuples, with an all-uppercase name as a class attribute on the model.
+All database fields
+Custom manager attributes
+class Meta
+def __str__()
+def save()
+def get_absolute_url()
+Any custom methods
+Example:
+
+from django.db import models
+from django.urls import reverse
+
+class Company(models.Model):
+    # CHOICES
+    PUBLIC_LIMITED_COMPANY = 'PLC'
+    PRIVATE_COMPANY_LIMITED = 'LTD'
+    LIMITED_LIABILITY_PARTNERSHIP = 'LLP'
+    COMPANY_TYPE_CHOICES = (
+        (PUBLIC_LIMITED_COMPANY, 'Public limited company'),
+        (PRIVATE_COMPANY_LIMITED, 'Private company limited by shares'),
+        (LIMITED_LIABILITY_PARTNERSHIP, 'Limited liability partnership'),
+    )
+
+    # DATABASE FIELDS
+    name = models.CharField('name', max_length=30)
+    vat_identification_number = models.CharField('VAT', max_length=20)
+    company_type = models.CharField('type', max_length=3, choices=COMPANY_TYPE_CHOICES)
+
+    # MANAGERS
+    objects = models.Manager()
+    limited_companies = LimitedCompanyManager()
+
+    # META CLASS
+    class Meta:
+        verbose_name = 'company'
+        verbose_name_plural = 'companies'
+
+    # TO STRING METHOD
+    def __str__(self):
+        return self.name
+
+    # SAVE METHOD
+    def save(self, *args, **kwargs):
+        do_something()
+        super().save(*args, **kwargs)  # Call the "real" save() method.
+        do_something_else()
+
+    # ABSOLUTE URL METHOD
+    def get_absolute_url(self):
+        return reverse('company_details', kwargs={'pk': self.id})
+
+    # OTHER METHODS
+    def process_invoices(self):
+        do_something()
 ```
 
 ## How to run
