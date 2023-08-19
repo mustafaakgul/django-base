@@ -47,8 +47,8 @@
 * Add pipfile and pipfile.lock
 
 ## Naming Conventions
-* Project -> django_base_structure
-* Apps -> namely it should be short, all-lowercase and not include numbers, dashes, periods, spaces, or special characters. It also, in general, should be the plural of an app's main model, so our posts app would have a main model called Post
+* Project -> django_base_structure, for github alter to django-base-structure
+* Apps -> namely it should be short, all-lowercase and not include numbers, dashes, periods, spaces, or special characters. It also, in general, should be the plural of an app's main model, so our posts app would have a main model called Post. Exp: rest_framework, polls.
 
 ### Sources
 * https://peps.python.org/pep-0008/#package-and-module-names
