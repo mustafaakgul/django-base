@@ -1,7 +1,8 @@
-# Django Base Structure
+# Django Base Structure - Project Structure
 * Project -> Django Base Structure
 * Apps -> App
 * 3rd Party Apps -> ...
+* IDE -> *PyCharm, VSCode
 * [Django](https://www.djangoproject.com/) - The web framework used
 * [Django Rest Framework](https://www.django-rest-framework.org/) - The web framework used
 * SonarLint - The IDE extension used
@@ -49,6 +50,13 @@
 ## Naming Conventions
 * Project -> django_base_structure, for github alter to django-base-structure
 * Apps -> namely it should be short, all-lowercase and not include numbers, dashes, periods, spaces, or special characters. It also, in general, should be the plural of an app's main model, so our posts app would have a main model called Post. Exp: rest_framework, polls.
+* Name the variables properly: Never use single characters, for example, ‘x’ or ‘X’ as variable names. It might be okay for your normal Python scripts, but when you are building a web application, you must name the variable properly as it determines the readability of the whole project.
+* Naming of packages and modules: Lowercase and short names are recommended for modules. Underscores can be used if their use would improve readability. Python packages should also have short, all-lowercase names, although the use of underscores is discouraged.
+* Since module names are mapped to file names (models.py, urls.py, and so on), it is important that module names be chosen to be fairly short as some file systems are case insensitive and truncate long names.
+* Naming a class: Class names should follow the CamelCase naming convention, and classes for internal use can have a leading underscore in their name.
+* Global variable names: First of all, you should avoid using global variables, but if you need to use them, prevention of global variables from getting exported can be done via __all__, or by defining them with a prefixed underscore (the old, conventional way).
+* Function names and method argument: Names of functions should be in lowercase and separated by an underscore and self as the first argument to instantiate methods. For classes or methods, use CLS or the objects for initialization.
+* Method names and instance variables: Use the function naming rules—lowercase with words separated by underscores as necessary to improve readability. Use one leading underscore only for non-public methods and instance variables.
 
 ### Sources
 * https://peps.python.org/pep-0008/#package-and-module-names
